@@ -4,11 +4,9 @@
 #include <LiquidCrystal_I2C.h>
 #include <Adafruit_Fingerprint.h>
 #include <Keypad.h>
-#define COLUMS 16
-#define ROWS 2
+#define COLUMS 20
+#define ROWS 4
 #define PAGE ((COLUMS) * (ROWS))
-#define DHTPIN 8
-#define DHTTYPE DHT22
 #define fpSerial Serial3
 
 const int ROW_NUM = 4;    //four rows
@@ -19,6 +17,8 @@ char keys[ROW_NUM][COLUMN_NUM] = {
     {'7', '8', '9', 'C'},
     {'*', '0', '#', 'D'}};
 uint8_t id;
+int speed=0;
+int lock = 1, auto_ = 0, fwd = 0, back = 0, lf = 0, rt = 0;
 byte pin_rows[ROW_NUM] = {53, 51, 49, 47};      //connect to the row pinouts of the keypad
 byte pin_column[COLUMN_NUM] = {45, 43, 41, 39}; //connect to the column pinouts of the keypad
 char key;
@@ -278,7 +278,7 @@ void enrole()
   }
 }
 
-int speed=0;
+
 void set_speed()
 {
   String input_speed;
@@ -360,7 +360,7 @@ void setup()
   lcd.setCursor(0, 1);
   lcd.print("Hello ");
 }
-int lock = 1, auto_ = 0, fwd = 0, back = 0, lf = 0, rt = 0;
+
 void loop()
 {
   //read lock
