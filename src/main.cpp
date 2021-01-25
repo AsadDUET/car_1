@@ -277,8 +277,6 @@ void enrole()
     }
   }
 }
-
-
 void set_speed()
 {
   String input_speed;
@@ -394,15 +392,19 @@ void loop()
         //read buttons
         while (fwd)
         { //read button
+        auto_ = 0;
         }
         while (back)
         { //read button
+        auto_ = 0;
         }
         while (lf)
         { //read button
+        auto_ = 0;
         }
         while (rt)
         { //read button
+        auto_ = 0;
         }
         //read lock
       }
