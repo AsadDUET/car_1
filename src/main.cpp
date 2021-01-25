@@ -7,7 +7,7 @@
 #define COLUMS 20
 #define ROWS 4
 #define PAGE ((COLUMS) * (ROWS))
-#define fpSerial Serial3
+#define fpSerial Serial1
 
 const int ROW_NUM = 4;    //four rows
 const int COLUMN_NUM = 4; //four columns
@@ -22,14 +22,14 @@ int lock = 1, auto_ = 0, fwd = 0, back = 0, lf = 0, rt = 0;
 byte pin_rows[ROW_NUM] = {53, 51, 49, 47};      //connect to the row pinouts of the keypad
 byte pin_column[COLUMN_NUM] = {45, 43, 41, 39}; //connect to the column pinouts of the keypad
 char key;
-LiquidCrystal_I2C lcd(0x27, 16, 2);
+// LiquidCrystal_I2C lcd(0x27, COLUMS, ROWS);
 Adafruit_Fingerprint finger = Adafruit_Fingerprint(&fpSerial);
 Keypad keypad = Keypad(makeKeymap(keys), pin_rows, pin_column, ROW_NUM, COLUMN_NUM);
 uint8_t getFingerprintEnroll()
 {
   int p = -1;
-  lcd.clear();
-  lcd.print("place finter");
+  // lcd.clear();
+  // lcd.print("place finter");
   Serial.println(id);
   while (p != FINGERPRINT_OK)
   {
@@ -79,8 +79,8 @@ uint8_t getFingerprintEnroll()
     return p;
   }
 
-  lcd.clear();
-  lcd.print("Remove finger");
+  // lcd.clear();
+  // lcd.print("Remove finger");
   delay(2000);
   p = 0;
   while (p != FINGERPRINT_NOFINGER)
@@ -90,8 +90,8 @@ uint8_t getFingerprintEnroll()
   Serial.print("ID ");
   Serial.println(id);
   p = -1;
-  lcd.clear();
-  lcd.print("Place same finger");
+  // lcd.clear();
+  // lcd.print("Place same finger");
   while (p != FINGERPRINT_OK)
   {
     p = finger.getImage();
@@ -147,8 +147,8 @@ uint8_t getFingerprintEnroll()
   p = finger.createModel();
   if (p == FINGERPRINT_OK)
   {
-    lcd.clear();
-    lcd.print("Prints matched!");
+    // lcd.clear();
+    // lcd.print("Prints matched!");
   }
   /*else if (p == FINGERPRINT_PACKETRECIEVEERR)
 	{
@@ -162,8 +162,8 @@ uint8_t getFingerprintEnroll()
 	}*/
   else
   {
-    lcd.clear();
-    lcd.print("Unknown error");
+    // lcd.clear();
+    // lcd.print("Unknown error");
     return p;
   }
 
@@ -172,8 +172,8 @@ uint8_t getFingerprintEnroll()
   p = finger.storeModel(id);
   if (p == FINGERPRINT_OK)
   {
-    lcd.clear();
-    lcd.print("Stored!");
+    // lcd.clear();
+    // lcd.print("Stored!");
     delay(1000);
   }
   /*else if (p == FINGERPRINT_PACKETRECIEVEERR)
@@ -193,8 +193,8 @@ uint8_t getFingerprintEnroll()
 	}*/
   else
   {
-    lcd.clear();
-    lcd.print("saving error");
+    // lcd.clear();
+    // lcd.print("saving error");
     return p;
   }
 
@@ -226,8 +226,8 @@ void enrole()
   String input_id;
   while (1)
   {
-    lcd.clear();
-    lcd.print("Enter ID # 1-127");
+    // lcd.clear();
+    // lcd.print("Enter ID # 1-127");
     while (1)
     {
       key = keypad.getKey();
@@ -242,10 +242,10 @@ void enrole()
         else if (key == '1' || key == '2' || key == '3' || key == '4' || key == '5' || key == '6' || key == '7' || key == '8' || key == '9' || key == '0')
         {
           input_id += key;
-          lcd.clear();
-          lcd.print("Enter ID # 1-127");
-          lcd.setCursor(0, 1);
-          lcd.print(input_id);
+          // lcd.clear();
+          // lcd.print("Enter ID # 1-127");
+          // lcd.setCursor(0, 1);
+          // lcd.print(input_id);
         }
         else if (key == 'C')
         {
@@ -257,21 +257,21 @@ void enrole()
     if (key == 'C')
     {
 
-      lcd.clear();
-      lcd.print("Cancel");
+      // lcd.clear();
+      // lcd.print("Cancel");
       break;
     }
     id = input_id.toInt();
     if (id == 0)
     {
-      lcd.clear();
-      lcd.print("0 not Allowed");
+      // lcd.clear();
+      // lcd.print("0 not Allowed");
     }
     else
     {
-      lcd.clear();
-      lcd.print("Enrolling ID # ");
-      lcd.print(id);
+      // lcd.clear();
+      // lcd.print("Enrolling ID # ");
+      // lcd.print(id);
       while (!getFingerprintEnroll())
         ;
     }
@@ -284,8 +284,8 @@ void set_speed()
   String input_speed;
   while (1)
   {
-    lcd.clear();
-    lcd.print("Enter speed # 0-255");
+    // lcd.clear();
+    // lcd.print("Enter speed # 0-255");
     while (1)
     {
       key = keypad.getKey();
@@ -300,10 +300,10 @@ void set_speed()
         else if (key == '1' || key == '2' || key == '3' || key == '4' || key == '5' || key == '6' || key == '7' || key == '8' || key == '9' || key == '0')
         {
           input_speed += key;
-          lcd.clear();
-          lcd.print("Enter speed # 0-255");
-          lcd.setCursor(0, 1);
-          lcd.print(input_speed);
+          // lcd.clear();
+          // lcd.print("Enter speed # 0-255");
+          // lcd.setCursor(0, 1);
+          // lcd.print(input_speed);
         }
         else if (key == 'C')
         {
@@ -314,22 +314,22 @@ void set_speed()
     if (key == 'C')
     {
 
-      lcd.clear();
-      lcd.print("Cancel");
+      // lcd.clear();
+      // lcd.print("Cancel");
       break;
     }
     
     if (speed > 255)
     {
-      lcd.clear();
-      lcd.print("Max 255 - canceled");
+      // lcd.clear();
+      // lcd.print("Max 255 - canceled");
     }
     else
     {
       speed = input_speed.toInt();
-      lcd.clear();
-      lcd.print("Going speed ");
-      lcd.print(speed);
+      // lcd.clear();
+      // lcd.print("Going speed ");
+      // lcd.print(speed);
     }
   }
 }
@@ -354,11 +354,11 @@ void setup()
     ;
   }
 
-  lcd.init();
-  lcd.backlight();
+  // lcd.init();
+  // lcd.backlight();
   delay(1000);
-  lcd.setCursor(0, 1);
-  lcd.print("Hello ");
+  // lcd.setCursor(0, 1);
+  // lcd.print("Hello ");
 }
 
 void loop()
@@ -379,11 +379,11 @@ void loop()
         key = keypad.getKey();
         if (key == 'A')
         {
-          lcd.clear();
-          lcd.print(key);
+          // lcd.clear();
+          // lcd.print(key);
           enrole();
-          lcd.clear();
-          lcd.print("End Enrole");
+          // lcd.clear();
+          // lcd.print("End Enrole");
         }
 
         if (key == 'D')
@@ -407,7 +407,7 @@ void loop()
         //read lock
       }
     }
-    lcd.setCursor(0, 1);
-    lcd.print(" Welcome ");
+    // lcd.setCursor(0, 1);
+    // lcd.print(" Welcome ");
   }
 }
