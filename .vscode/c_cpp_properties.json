@@ -1,0 +1,70 @@
+//
+// !!! WARNING !!! AUTO-GENERATED FILE!
+// PLEASE DO NOT MODIFY IT AND USE "platformio.ini":
+// https://docs.platformio.org/page/projectconf/section_env_build.html#build-flags
+//
+{
+    "configurations": [
+        {
+            "name": "PlatformIO",
+            "includePath": [
+                "/run/media/asad/MyProject/project/github/car_1/include",
+                "/run/media/asad/MyProject/project/github/car_1/src",
+                "/run/media/asad/MyProject/project/github/car_1/.pio/libdeps/megaatmega2560/Adafruit Unified Sensor",
+                "/run/media/asad/MyProject/project/github/car_1/.pio/libdeps/megaatmega2560/Adafruit Fingerprint Sensor Library",
+                "/home/asad/.platformio/packages/framework-arduino-avr/libraries/SoftwareSerial/src",
+                "/run/media/asad/MyProject/project/github/car_1/.pio/libdeps/megaatmega2560/Keypad/src",
+                "/run/media/asad/MyProject/project/github/car_1/.pio/libdeps/megaatmega2560/LiquidCrystal_I2C",
+                "/home/asad/.platformio/packages/framework-arduino-avr/libraries/Wire/src",
+                "/home/asad/.platformio/packages/framework-arduino-avr/libraries/SPI/src",
+                "/home/asad/.platformio/packages/framework-arduino-avr/cores/arduino",
+                "/home/asad/.platformio/packages/framework-arduino-avr/variants/mega",
+                "/run/media/asad/MyProject/project/github/car_1/.pio/libdeps/megaatmega2560/DHT sensor library",
+                "/run/media/asad/MyProject/project/github/car_1/.pio/libdeps/megaatmega2560/Servo/src",
+                "/home/asad/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
+                "/home/asad/.platformio/packages/framework-arduino-avr/libraries/HID/src",
+                "/home/asad/.platformio/packages/tool-unity",
+                ""
+            ],
+            "browse": {
+                "limitSymbolsToIncludedHeaders": true,
+                "path": [
+                    "/run/media/asad/MyProject/project/github/car_1/include",
+                    "/run/media/asad/MyProject/project/github/car_1/src",
+                    "/run/media/asad/MyProject/project/github/car_1/.pio/libdeps/megaatmega2560/Adafruit Unified Sensor",
+                    "/run/media/asad/MyProject/project/github/car_1/.pio/libdeps/megaatmega2560/Adafruit Fingerprint Sensor Library",
+                    "/home/asad/.platformio/packages/framework-arduino-avr/libraries/SoftwareSerial/src",
+                    "/run/media/asad/MyProject/project/github/car_1/.pio/libdeps/megaatmega2560/Keypad/src",
+                    "/run/media/asad/MyProject/project/github/car_1/.pio/libdeps/megaatmega2560/LiquidCrystal_I2C",
+                    "/home/asad/.platformio/packages/framework-arduino-avr/libraries/Wire/src",
+                    "/home/asad/.platformio/packages/framework-arduino-avr/libraries/SPI/src",
+                    "/home/asad/.platformio/packages/framework-arduino-avr/cores/arduino",
+                    "/home/asad/.platformio/packages/framework-arduino-avr/variants/mega",
+                    "/run/media/asad/MyProject/project/github/car_1/.pio/libdeps/megaatmega2560/DHT sensor library",
+                    "/run/media/asad/MyProject/project/github/car_1/.pio/libdeps/megaatmega2560/Servo/src",
+                    "/home/asad/.platformio/packages/framework-arduino-avr/libraries/EEPROM/src",
+                    "/home/asad/.platformio/packages/framework-arduino-avr/libraries/HID/src",
+                    "/home/asad/.platformio/packages/tool-unity",
+                    ""
+                ]
+            },
+            "defines": [
+                "PLATFORMIO=50004",
+                "ARDUINO_AVR_MEGA2560",
+                "F_CPU=16000000L",
+                "ARDUINO_ARCH_AVR",
+                "ARDUINO=10808",
+                "__AVR_ATmega2560__",
+                ""
+            ],
+            "cStandard": "c11",
+            "cppStandard": "c++11",
+            "compilerPath": "/home/asad/.platformio/packages/toolchain-atmelavr/bin/avr-gcc",
+            "compilerArgs": [
+                "-mmcu=atmega2560",
+                ""
+            ]
+        }
+    ],
+    "version": 4
+}
