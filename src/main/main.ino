@@ -1,13 +1,13 @@
 #include <Arduino.h>
-#include <Adafruit_Sensor.h>
+#include "Adafruit_Sensor.h"
 #include <Wire.h>
-#include <LiquidCrystal_I2C.h>
-#include <Adafruit_Fingerprint.h>
-#include <Keypad.h>
+#include "LiquidCrystal_I2C.h"
+#include "Adafruit_Fingerprint.h"
+#include "Keypad.h"
 #define COLUMS 20
 #define ROWS 4
 #define PAGE ((COLUMS) * (ROWS))
-#define fpSerial Serial2
+#define fpSerial Serial1
 #define echoPin 2 // attach pin D2 Arduino to pin Echo of HC-SR04
 #define trigPin 3 //attach pin D3 Arduino to pin Trig of HC-SR04
 long duration;    // variable for the duration of sound wave travel
@@ -23,15 +23,12 @@ char keys[ROW_NUM][COLUMN_NUM] = {
 uint8_t id;
 int speed = 0;
 int lock = 0, auto_ = 0, fwd = 0, back = 0, lf = 0, rt = 0;
-byte pin_rows[ROW_NUM] = {36, 34, 32, 30};      //connect to the row pinouts of the keypad
-byte pin_column[COLUMN_NUM] = {28, 26, 24, 22}; //connect to the column pinouts of the keypad
+byte pin_rows[ROW_NUM] = {53, 51, 49, 47};      //connect to the row pinouts of the keypad
+byte pin_column[COLUMN_NUM] = {45, 43, 41, 39}; //connect to the column pinouts of the keypad
 char key;
 LiquidCrystal_I2C lcd(0x27, COLUMS, ROWS);
 Adafruit_Fingerprint finger = Adafruit_Fingerprint(&fpSerial);
 Keypad keypad = Keypad(makeKeymap(keys), pin_rows, pin_column, ROW_NUM, COLUMN_NUM);
-
-void go(int x);
-int ena = 13, in1 = 12, in2 = 11, in3 = 10, in4 = 9, enb = 8;
 uint8_t getFingerprintEnroll()
 {
 
@@ -335,8 +332,7 @@ void set_speed()
       {
         if (key == '#')
         {
-          int speed=atoi(input_speed.c_str());
-          speed=min(speed,255);
+
           Serial.println("Break");
           break;
         }
@@ -371,6 +367,7 @@ void set_speed()
     }
     else
     {
+
       lcd.clear();
       lcd.print("Going speed ");
       go(1);
@@ -387,10 +384,7 @@ void go(int x)
   }
   if (x == 1)
   {
-    digitalWrite(in1, HIGH);
-    digitalWrite(in2, LOW);
-    digitalWrite(in3, HIGH);
-    digitalWrite(in4, LOW);
+    //forward
   }
   if (x == 2)
   {
@@ -437,15 +431,8 @@ void setup()
   pinMode(echoPin, INPUT);  // Sets the echoPin as an INPUT
   pinMode(37, OUTPUT);
   pinMode(50, OUTPUT);
-
-  pinMode(ena, OUTPUT);
-  pinMode(in1, OUTPUT);
-  pinMode(in2, OUTPUT);
-  pinMode(in3, OUTPUT);
-  pinMode(in4, OUTPUT);
-  pinMode(enb, OUTPUT);
   Serial.begin(115200);
-  Serial.println("Car Automation");
+  Serial.println("Home Automation");
 
   // set the data rate for the sensor serial port
   finger.begin(57600);
@@ -463,39 +450,11 @@ void setup()
 
   lcd.init();
   lcd.backlight();
+  delay(1000);
+  lcd.setCursor(0, 1);
   lcd.print("Hello ");
 }
-int known = -1;
-void loop()
-{
-  analogWrite(ena, 200);
-  analogWrite(enb, 200);
-  digitalWrite(in3, HIGH);
-  digitalWrite(in4, LOW);
-  digitalWrite(in3, HIGH);
-  digitalWrite(in4, LOW);
-  // key = keypad.getKey();
-  // if (key == 'B')
-  // {0
-  //   lcd.clear();
-  //   lcd.print(key);
-  //   known = getFingerprintIDez();
-  //   lcd.print(known);
-  //   digitalWrite(in1, HIGH);
-  //   digitalWrite(in2, LOW);
-  //   analogWrite(ena, 200);
-  //   delay(2000);
-  //   digitalWrite(in1, LOW);
-  //   digitalWrite(in2, LOW);
-  //   analogWrite(ena, 0);
-  //   lcd.clear();
-  // }
-  // if (key == 'A')
-  // {
-  //   enrole();
-  // }
-}
-/*
+
 void loop()
 {
   speed = 0;
@@ -510,7 +469,7 @@ void loop()
 
   if (!lock)
   {
-    known = getFingerprintIDez();
+    int known = getFingerprintIDez();
     if (known != -1)
     {
       lcd.clear();
@@ -642,4 +601,3 @@ void loop()
   lcd.clear();
   lcd.print(" Welcome ");
 }
-*/
